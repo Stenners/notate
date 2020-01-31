@@ -1,7 +1,7 @@
 import React from 'react'
 import * as firebase from 'firebase/app'
 
-const Login = props => (
+const Login = () => (
   <button
     onClick={async () => {
       const googleAuthProvider = new firebase.auth.GoogleAuthProvider()

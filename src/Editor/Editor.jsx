@@ -6,12 +6,28 @@ import NoteList from '../NoteList'
 import { highlight, languages } from 'prismjs'
 import './Editor.css'
 
-const EditorView = () => {
+const EditorView = ({ user }) => {
   const [code, updateCode] = useState('')
   const newTemplate = '# Untitled'
 
   const newNote = () => {
     updateCode(newTemplate)
+  }
+
+  const saveNote = () => {
+    // db.collection('cities')
+    //   .doc('LA')
+    //   .set({
+    //     name: 'Los Angeles',
+    //     state: 'CA',
+    //     country: 'USA',
+    //   })
+    //   .then(function() {
+    //     console.log('Document successfully written!')
+    //   })
+    //   .catch(function(error) {
+    //     console.error('Error writing document: ', error)
+    //   })
   }
 
   return (

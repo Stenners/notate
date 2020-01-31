@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react'
 import Login from '../Login'
-import { FirebaseAuthConsumer } from '@react-firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import firebaseContext from '../firebase'
 
-const PrivateRoute = (props) => {
-  
-  const { as: Comp, ...rest } = props;
-  return (
-    <FirebaseAuthConsumer>
-      {({ isSignedIn }) => {
-        return isSignedIn ? <Comp {...rest} /> : <Login />;
-      }}
-    </FirebaseAuthConsumer>
-  )
-};
+const PrivateRoute = props => {
+  const fb = useContext(firebaseContext)
+  const { as: Comp, ...rest } = props
+  const [user, initialising, error] = useAuthState(fb.auth)
 
-export default PrivateRoute;
+  if (initialising) {
+    return null
+  } else if (error) {
+    return <Login />
+  }
+  return (user) ? <Comp {...rest} user={user} /> : <Login />
+}
+
+export default PrivateRoute
