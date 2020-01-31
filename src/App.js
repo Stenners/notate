@@ -2,7 +2,6 @@ import React from 'react';
 import { Router } from "@reach/router";
 import PrivateRoute from './PrivateRoute'
 import Editor from './Editor'
-import './App.css';
 
 const App = () => {
   return (
