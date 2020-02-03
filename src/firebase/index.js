@@ -17,7 +17,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const fb = {
-  auth: firebase.auth()
+  auth: firebase.auth(),
+  db: firebase.firestore(),
 }
 
 const firebaseContext = createContext()
