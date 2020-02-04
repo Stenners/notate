@@ -48,6 +48,7 @@ class EditorView extends Component {
     const newNote = {
       content: '# Untitled',
       title: '# Untitled',
+      index: newArr.length,
     }
     newArr.push(newNote)
     this.setState({
@@ -59,17 +60,36 @@ class EditorView extends Component {
   }
 
   selectedNote = note => {
-    this.setState({ selectedNote: note })
+    const { db } = this.fb
+    const { user } = this.props
+    const curDoc = db
+      .collection('users')
+      .doc(user.uid)
+      .collection('notes')
+      .doc(note.id)
+
+    this.setState({ selectedNote: note, currentDoc: curDoc })
   }
 
-  deleteNote = note => {
-    // this.setState({ selectedNote: note })
-    console.log('delete')
+  deleteNote = () => {
+    this.state.currentDoc.delete()
+    const noteIndex = this.state.selectedNote.index
+    const newArr = Array.from(this.state.noteList)
+    newArr.splice(noteIndex, 1)
+    newArr.map((item, i) => (item.index = i))
+    console.log(newArr)
+
+    this.setState({
+      currentDoc: undefined,
+      noteList: newArr,
+      selectedNote: 0,
+    })
   }
 
   updateNoteData = (content, i) => {
     const newArr = Array.from(this.state.noteList)
     newArr[i].content = content
+    newArr[i].title = content.split('\n')[0]
     this.setState({ noteList: newArr, isNew: false })
   }
 
@@ -118,7 +138,8 @@ class EditorView extends Component {
     return (
       <SplitPane split="vertical" defaultSize={300}>
         <NoteList
-          selectedNote={this.selectedNote}
+          selectNote={this.selectedNote}
+          selectedNote={this.state.selectedNote.index}
           notes={this.state.noteList}
           newNote={this.newNote}
         />
