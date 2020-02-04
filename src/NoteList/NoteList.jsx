@@ -5,7 +5,7 @@ import Button from '../Button'
 const NoteList = ({ notes, newNote, selectNote, selectedNote }) => {
   return (
     <Wrapper>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <Button onClick={newNote} icon="la-plus" />
       <div>
         <Ul>

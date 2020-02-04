@@ -19,6 +19,7 @@ class EditorView extends Component {
       noteList: [],
       selectedNote: { title: '', content: '' },
       editMode: false,
+      showMenu: true,
     }
     this.fb = context
   }
@@ -93,6 +94,10 @@ class EditorView extends Component {
     this.setState({ noteList: newArr, isNew: false })
   }
 
+  toggleMenu = () => {
+    this.setState({ showMenu: !this.state.showMenu })
+  }
+
   saveNote = code => {
     const { db } = this.fb
     const { user } = this.props
@@ -136,15 +141,24 @@ class EditorView extends Component {
   render() {
     const { editMode } = this.state
     return (
-      <SplitPane split="vertical" defaultSize={300}>
+      <SplitPane
+        split="vertical"
+        defaultSize={300}
+        className={this.state.showMenu ? '' : 'no-menu'}
+      >
         <NoteList
           selectNote={this.selectedNote}
           selectedNote={this.state.selectedNote.index}
           notes={this.state.noteList}
           newNote={this.newNote}
+          showMenu={this.state.showMenu}
         />
         <ViewWrapper>
-          <Toolbar viewMode={this.viewMode} deleteNote={this.deleteNote} />
+          <Toolbar
+            viewMode={this.viewMode}
+            deleteNote={this.deleteNote}
+            toggleMenu={this.toggleMenu}
+          />
           {editMode && (
             <Code
               saveNote={this.saveNote}

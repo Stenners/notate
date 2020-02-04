@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from '../Button'
 
-const Toolbar = ({ viewMode, deleteNote }) => {
+const Toolbar = ({ viewMode, deleteNote, toggleMenu }) => {
   return (
     <ToolbarWrapper>
+      <Button onClick={toggleMenu} icon="la-bars" />
       <Button onClick={viewMode} icon="la-edit" />
       <Button icon="la-tags" />
       <Button onClick={deleteNote} icon="la-trash-alt" />
