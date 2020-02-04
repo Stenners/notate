@@ -4,7 +4,7 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD0ATrgiaQtoCThQawy3t8CHp-mPtwdDDc",
+  apiKey: process.env.REACT_APP_FB_API,
   authDomain: "notate-stenners.firebaseapp.com",
   databaseURL: "https://notate-stenners.firebaseio.com",
   projectId: "notate-stenners",
