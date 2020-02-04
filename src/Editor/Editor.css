@@ -51,7 +51,9 @@
 .SplitPane.no-menu > .Pane1 {
   width: 0 !important;
 }
-
+.Pane {
+  overflow: scroll;
+}
 .Pane2 {
   background-color: #fafafa;
   padding: 0 2rem;
