@@ -3,6 +3,7 @@ import { Router } from "@reach/router";
 import PrivateRoute from './PrivateRoute'
 import Editor from './Editor'
 import firebaseContext, { fb } from './firebase'
+import 'normalize.css'
 
 const App = () => {
   return (
