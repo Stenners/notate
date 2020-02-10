@@ -12,10 +12,10 @@ const Button = ({ onClick, icon, selected = false }) => {
 const StyledButton = styled.button`
   font-size: 18px;
   font-weight: 600;
-  border: 1px solid #dddddd;
-  background-color: #ffffff;
+  border: ${props => props.theme.button.border};
+  background-color: ${props => props.theme.button.bg};
   padding: 0.1rem 0.6rem;
-  color: #7c4dff;
+  color: ${props => props.theme.button.color};
   appearance: none;
   cursor: pointer;
 `

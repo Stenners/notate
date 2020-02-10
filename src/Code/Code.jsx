@@ -36,7 +36,6 @@ const EditorWindow = styled(Editor)`
   width: 100%;
   height: 99vh;
   margin-top: 1rem;
-  background-color: #fafafa;
 `
 
 export default Code
