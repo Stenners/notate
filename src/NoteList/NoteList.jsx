@@ -4,10 +4,12 @@ import Button from '../Button'
 
 const NoteList = ({ notes, newNote, selectNote, selectedNote }) => {
   return (
-    <Wrapper>
-      {/* <SearchBar /> */}
-      <Button onClick={newNote} icon="la-plus" />
-      <div>
+    <>
+      <Wrapper>
+        {/* <SearchBar /> */}
+        <Button onClick={newNote} icon="la-plus" />
+      </Wrapper>
+      <List>
         <Ul>
           {notes.map((item, i) => (
             <Item
@@ -19,13 +21,17 @@ const NoteList = ({ notes, newNote, selectNote, selectedNote }) => {
             </Item>
           ))}
         </Ul>
-      </div>
-    </Wrapper>
+      </List>
+    </>
   )
 }
 
 const Wrapper = styled.div`
-  /* padding: 1rem; */
+  padding: 1rem;
+`
+
+const List = styled.div`
+  margin-top: 1.2rem;
 `
 
 const Ul = styled.ul`
@@ -36,14 +42,14 @@ const Ul = styled.ul`
 const Item = styled.li`
   width: 100%;
   cursor: pointer;
-  background-color: ${props => (props.selected ? '#efedf1' : 'transparent')};
+  background-color: ${props => (props.selected ? props.theme.notelist.note.selected : 'transparent')};
   margin: 0;
-  padding: 0.4rem;
+  padding: 0.4rem 1.2rem;
 `
 
-const SearchBar = styled.input`
-  width: 80%;
-  line-height: 1.2rem;
-`
+// const SearchBar = styled.input`
+//   width: 80%;
+//   line-height: 1.2rem;
+// `
 
 export default NoteList

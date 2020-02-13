@@ -4,16 +4,15 @@ import PrivateRoute from './PrivateRoute'
 import Editor from './Editor'
 import styled, { ThemeProvider } from 'styled-components'
 import firebaseContext, { fb } from './firebase'
-import AppBar from './AppBar';
 import theme from './themes/dark'
-import 'normalize.css'
+import './themes/typography.css'
 
 const App = () => {
   return (
     <firebaseContext.Provider value={fb}>
       <ThemeProvider theme={theme}>
         <Wrapper>
-          <AppBar />
+          {/* <AppBar /> */}
           <Router>
             <PrivateRoute as={Editor} path="/" />
           </Router>
@@ -25,7 +24,7 @@ const App = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  height: 100%;
+  height: 100vh;
   color: ${props => props.theme.fg};
   background-color: ${props => props.theme.bg};
 `
